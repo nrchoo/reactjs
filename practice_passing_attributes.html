@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+  <title> Practicing complex components </title>
+  <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+
+<body>
+<div id='container'> </div>
+
+<script type="text/babel">
+  var Spec = React.createClass({
+    render: function(){
+      return(
+        <div>
+          <p> {this.props.name} </p>
+          <p> {this.props.color} </p>
+          <p> {this.props.weapon} </p>
+        </div>
+      );
+    }
+  });
+
+  var Type = React.createClass({
+    render: function(){
+      return(
+        <div>
+          <Spec {...this.props}/>
+        </div>
+      );
+    }
+  });
+
+  var Fighter = React.createClass({
+    render: function(){
+      return(
+        <div>
+          <Type {...this.props}/>
+        </div>
+      );
+    }
+  });
+
+
+  var destination = document.querySelector("#container");
+
+  ReactDOM.render(
+    <div>
+      <Fighter name= "Celia" color="red" weapon="tome"> </Fighter>
+      <Fighter name="Ryoma" color='red' weapon="sword"> </Fighter>
+      <Fighter name="Effie" color='blue' weapon="lance"> </Fighter>
+      <Fighter name="Hector" color='green' weapon="green"> </Fighter>
+    </div>,
+    destination
+
+  );
+
+</script>
+
+
+</body>
